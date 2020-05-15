@@ -1,0 +1,1635 @@
+{
+	"info": {
+		"_postman_id": "182ba3b6-178a-4ea9-bd29-0188276f8fde",
+		"name": "shopizer Sprint 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"item": [
+				{
+					"name": "authentication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "72465f21-e0c5-4d2a-90e5-11c31f00dc4c",
+								"exec": [
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"",
+									"",
+									"",
+									"",
+									"    ",
+									"",
+									"",
+									"const collectionVariables = pm.collectionVariables.toObject();",
+									"for (let variableName in collectionVariables){",
+									"   // if (variableName.includes(('__export')){   // for particular variables",
+									"           pm.globals.set(variableName, collectionVariables[variableName]); //for all variables",
+									"           console.log(\"Collection Variables:\",collectionVariables[variableName]);",
+									"",
+									"}",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"token\");",
+									"    //pm.expect(pm.response.totalprice).to.eql(200000);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Body is correct\", function () {",
+									"    pm.response.to.have.body({",
+									"    \"id\": 1,",
+									"    \"token\": pm.globals.get(\"token\")",
+									"});",
+									"});",
+									"",
+									"",
+									" let tokenValue = pm.response.json();",
+									"",
+									"pm.test(\"Checking User token value \", function () {",
+									"   ",
+									"    pm.expect(tokenValue.token).to.eql(pm.globals.get(\"token\"));",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking User Id value \", function () {",
+									"   ",
+									"    ",
+									"    pm.expect(tokenValue.id).to.eql(1);",
+									"}); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"password\",\r\n  \"username\": \"admin@shopizer.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/private/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"private",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentication details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fcb4e1e6-59a6-4ae0-9ea3-4e33be50e13d",
+								"exec": [
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"",
+									"",
+									"",
+									"",
+									"    ",
+									"",
+									"",
+									"const collectionVariables = pm.collectionVariables.toObject();",
+									"for (let variableName in collectionVariables){",
+									"   // if (variableName.includes(('__export')){   // for particular variables",
+									"           pm.globals.set(variableName, collectionVariables[variableName]); //for all variables",
+									"           console.log(\"Collection Variables:\",collectionVariables[variableName]);",
+									"",
+									"}",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"token\");",
+									"    //pm.expect(pm.response.totalprice).to.eql(200000);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Body is correct\", function () {",
+									"    pm.response.to.have.body({",
+									"    \"id\": 1,",
+									"    \"token\": pm.globals.get(\"token\")",
+									"});",
+									"});",
+									"",
+									"",
+									" let tokenValue = pm.response.json();",
+									"",
+									"pm.test(\"Checking User token value \", function () {",
+									"   ",
+									"    pm.expect(tokenValue.token).to.eql(pm.globals.get(\"token\"));",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking User Id value \", function () {",
+									"   ",
+									"    ",
+									"    pm.expect(tokenValue.id).to.eql(1);",
+									"}); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzaG9waXplci5jb20iLCJhdWQiOiJhcGkiLCJleHAiOjE1ODg3ODkxNzUsImlhdCI6MTU4ODE4NDM3NX0.i2z9evzj8ljJ4M7rBbI6XjFmn3B9RmW2IG8T0g0N55xOChX2i1Bxp8Q3M5EtS98cognic-IGECXgtVG1Evtf6w"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User APi",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "56508319-2d17-427a-819b-7dac4a5bb902",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    //url: pm.environment.get(\"{{url}}\"),\r",
+									"    url:'http://localhost:8080/api/v1/private/login',\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        \r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \r",
+									"            \r",
+									"            \r",
+									"  \"password\": \"password\",\r",
+									"  \"username\": \"admin@shopizer.com\"\r",
+									"\r",
+									" })\r",
+									"    }\r",
+									"    \r",
+									"    \r",
+									"}, function (err, res) {\r",
+									"    \r",
+									"    pm.globals.set(\"Shopizer tokenValue\", res.json().token);\r",
+									"    \r",
+									"    console.log(res);\r",
+									"    \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "0100bac4-fe8a-45be-8132-04c73395e78b",
+								"exec": [
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"",
+									"",
+									"",
+									"",
+									"    ",
+									"",
+									"",
+									"const collectionVariables = pm.collectionVariables.toObject();",
+									"for (let variableName in collectionVariables){",
+									"   // if (variableName.includes(('__export')){   // for particular variables",
+									"           pm.globals.set(variableName, collectionVariables[variableName]); //for all variables",
+									"           console.log(\"Collection Variables:\",collectionVariables[variableName]);",
+									"",
+									"}",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"userName\");",
+									"    //pm.expect(pm.response.totalprice).to.eql(200000);",
+									"});",
+									"",
+									"",
+									"",
+									" let shopizerValue = pm.response.json();",
+									"",
+									"pm.test(\"Checking Shopizer user UserName value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.userName).to.eql(\"Safe At Home\");",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking Shopizer user firstName value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.firstName).to.eql(\"Beautiful\");",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking Shopizer user Credentials  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.groups[0].name).to.eql(\"ADMIN\");",
+									"}); ",
+									"",
+									"pm.test(\"Checking Shopizer user Permissions  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.permissions[8].name).to.eql(\"PAYMENT\");",
+									"});",
+									"",
+									"pm.test(\"Checking Shopizer user Mailid value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.emailAddress).to.eql(\"teamred@iths.se\");",
+									"});",
+									"",
+									"",
+									"",
+									"var expect = require('chai').expect",
+									"  , firstName = 'Beautiful'",
+									"  , emailAddress = 'teamred@iths.se';",
+									"  ",
+									"    pm.test(\"Testing the different body response values\", function(){",
+									"",
+									"expect(firstName).to.be.a('string');",
+									"expect(firstName).to.equal('Beautiful');",
+									"expect(firstName).to.have.lengthOf(9);",
+									"expect(emailAddress).to.have.eql(\"teamred@iths.se\").with.lengthOf(15);",
+									"",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Testing different type variables\",function(){",
+									"pm.environment.get(\"{{url}}\");",
+									"pm.variables.get(\"key\");",
+									"pm.globals.get(\"Shopizer tokenValue\", jsonData.tokenValue);",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									"var user = {",
+									"  userFullName: function() {",
+									"    return this.firstName + \"  \" + this.lastName;",
+									"  }",
+									"}",
+									"  var userName1 = {",
+									"  firstName:\"Beautiful\",",
+									"  lastName: \"Life\"",
+									"}",
+									"var userName2 = {",
+									"  firstName:\"Hope\",",
+									"  lastName: \"will Win\"",
+									"}",
+									"pm.test(\"Full Name verification code\",function(){",
+									"    pm.expect(user.userFullName.call(userName1)).to.have.eql(\"Beautiful  Life\");",
+									"       pm.expect(user.userFullName.call(userName2)).to.have.eql(\"Hope  will Win\");",
+									"    ",
+									"});",
+									"console.log(\"user Name1:\",user.userFullName.call(userName1));",
+									"console.log(\"user Name2:\",user.userFullName.call(userName2));",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"firstName\": \"Beautiful\",\r\n    \"lastName\": \"Life\",\r\n    \"emailAddress\": \"teamred@iths.se\",\r\n    \"userName\": \"Safe At Home\",\r\n    \"password\":\"Coronavirus-1\",\r\n    \"defaultLanguage\": \"en\",\r\n    \"active\": true,\r\n    \"lastAccess\": null,\r\n    \"loginTime\": null,\r\n    \"merchant\": \"DEFAULT\",\r\n    \"permissions\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"STORE_ADMIN\"\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"name\": \"ADMIN\"\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"name\": \"AUTH\"\r\n        },\r\n        {\r\n            \"id\": 5,\r\n            \"name\": \"PRODUCTS\"\r\n        },\r\n        {\r\n            \"id\": 6,\r\n            \"name\": \"ORDER\"\r\n        },\r\n        {\r\n            \"id\": 7,\r\n            \"name\": \"CONTENT\"\r\n        },\r\n        {\r\n            \"id\": 8,\r\n            \"name\": \"STORE\"\r\n        },\r\n        {\r\n            \"id\": 9,\r\n            \"name\": \"TAX\"\r\n        },\r\n        {\r\n            \"id\": 10,\r\n            \"name\": \"PAYMENT\"\r\n        },\r\n        {\r\n            \"id\": 11,\r\n            \"name\": \"CUSTOMER\"\r\n        },\r\n        {\r\n            \"id\": 12,\r\n            \"name\": \"SHIPPING\"\r\n        },\r\n        {\r\n            \"id\": 13,\r\n            \"name\": \"AUTH_CUSTOMER\"\r\n        }\r\n    ],\r\n    \"groups\": [\r\n        {\r\n            \"name\": \"ADMIN\",\r\n            \"id\": 2\r\n        },\r\n        {\r\n            \"name\": \"CUSTOMER\",\r\n            \"id\": 7\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/private/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"private",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update customer details",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d96be893-13d4-4224-ba7c-fc630c7cd033",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    //url: pm.environment.get(\"{{url}}\"),\r",
+									"    url:'http://localhost:8080/api/v1/private/login',\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        \r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \r",
+									"            \r",
+									"            \r",
+									"  \"password\": \"password\",\r",
+									"  \"username\": \"admin@shopizer.com\"\r",
+									"\r",
+									" })\r",
+									"    }\r",
+									"    \r",
+									"    \r",
+									"}, function (err, res) {\r",
+									"    \r",
+									"    pm.globals.set(\"Shopizer tokenValue\", res.json().token);\r",
+									"    \r",
+									"    console.log(res);\r",
+									"    \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "3cf97a51-20e2-4054-bf31-6ef0c56301d5",
+								"exec": [
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"",
+									"",
+									"",
+									"",
+									"    ",
+									"",
+									"",
+									"const collectionVariables = pm.collectionVariables.toObject();",
+									"for (let variableName in collectionVariables){",
+									"   // if (variableName.includes(('__export')){   // for particular variables",
+									"           pm.globals.set(variableName, collectionVariables[variableName]); //for all variables",
+									"           console.log(\"Collection Variables:\",collectionVariables[variableName]);",
+									"",
+									"}",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"userName\");",
+									"    //pm.expect(pm.response.totalprice).to.eql(200000);",
+									"});",
+									"",
+									"",
+									"",
+									" let shopizerValue = pm.response.json();",
+									"",
+									"pm.test(\"Checking Shopizer user UserName value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.userName).to.eql(\"teamred\");",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking Shopizer user firstName value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.firstName).to.eql(\"hope\");",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking Shopizer user Credentials  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.groups[0].name).to.eql(\"ADMIN\");",
+									"}); ",
+									"",
+									"pm.test(\"Checking Shopizer user Permissions  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.permissions[8].name).to.eql(\"PAYMENT\");",
+									"});",
+									"",
+									"pm.test(\"Checking Shopizer user Mailid value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.emailAddress).to.eql(\"Sprints are more powerful@iths.se\");",
+									"});",
+									"",
+									"",
+									"",
+									"var expect = require('chai').expect",
+									"  , firstName = 'hope'",
+									"  , emailAddress = 'Sprints are more powerful@iths.se';",
+									"  ",
+									"    pm.test(\"Testing the different body response values\", function(){",
+									"",
+									"expect(firstName).to.be.a('string');",
+									"expect(firstName).to.equal('hope');",
+									"expect(firstName).to.have.lengthOf(4);",
+									"expect(emailAddress).to.have.eql(\"Sprints are more powerful@iths.se\").with.lengthOf(33);",
+									"",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Testing different type variables\",function(){",
+									"pm.environment.get(\"{{url}}\");",
+									"pm.variables.get(\"key\");",
+									"pm.globals.get(\"Shopizer tokenValue\", jsonData.tokenValue);",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									"var user = {",
+									"  userFullName: function() {",
+									"    return this.firstName + \"  \" + this.lastName;",
+									"  }",
+									"}",
+									"  var userName1 = {",
+									"  firstName:\"Beautiful\",",
+									"  lastName: \"Life\"",
+									"}",
+									"var userName2 = {",
+									"  firstName:\"Hope\",",
+									"  lastName: \"will Win\"",
+									"}",
+									"pm.test(\"Full Name verification code\",function(){",
+									"    pm.expect(user.userFullName.call(userName1)).to.have.eql(\"Beautiful  Life\");",
+									"       pm.expect(user.userFullName.call(userName2)).to.have.eql(\"Hope  will Win\");",
+									"    ",
+									"});",
+									"console.log(\"user Name1:\",user.userFullName.call(userName1));",
+									"console.log(\"user Name2:\",user.userFullName.call(userName2));",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 50,\r\n    \"firstName\": \"hope\",\r\n    \"lastName\": \"white\",\r\n    \"emailAddress\": \"Sprints are more powerful@iths.se\",\r\n    \"userName\": \"teamred\",\r\n    \"defaultLanguage\": \"en\",\r\n    \"active\": true,\r\n    \"lastAccess\": null,\r\n    \"loginTime\": null,\r\n    \"merchant\": \"DEFAULT\",\r\n    \"permissions\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"STORE_ADMIN\"\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"name\": \"ADMIN\"\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"name\": \"AUTH\"\r\n        },\r\n        {\r\n            \"id\": 5,\r\n            \"name\": \"PRODUCTS\"\r\n        },\r\n        {\r\n            \"id\": 6,\r\n            \"name\": \"ORDER\"\r\n        },\r\n        {\r\n            \"id\": 7,\r\n            \"name\": \"CONTENT\"\r\n        },\r\n        {\r\n            \"id\": 8,\r\n            \"name\": \"STORE\"\r\n        },\r\n        {\r\n            \"id\": 9,\r\n            \"name\": \"TAX\"\r\n        },\r\n        {\r\n            \"id\": 10,\r\n            \"name\": \"PAYMENT\"\r\n        },\r\n        {\r\n            \"id\": 11,\r\n            \"name\": \"CUSTOMER\"\r\n        },\r\n        {\r\n            \"id\": 12,\r\n            \"name\": \"SHIPPING\"\r\n        },\r\n        {\r\n            \"id\": 13,\r\n            \"name\": \"AUTH_CUSTOMER\"\r\n        }\r\n    ],\r\n    \"groups\": [\r\n        {\r\n            \"name\": \"ADMIN\",\r\n            \"id\": 2\r\n        },\r\n        {\r\n            \"name\": \"CUSTOMER\",\r\n            \"id\": 7\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/private/user/50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"private",
+								"user",
+								"50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "72aa984f-d47c-4d3a-980b-3f0201dd607c",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    //url: pm.environment.get(\"{{url}}\"),\r",
+									"    url:'http://localhost:8080/api/v1/private/login',\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        \r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \r",
+									"            \r",
+									"            \r",
+									"  \"password\": \"password\",\r",
+									"  \"username\": \"admin@shopizer.com\"\r",
+									"\r",
+									" })\r",
+									"    }\r",
+									"    \r",
+									"    \r",
+									"}, function (err, res) {\r",
+									"    \r",
+									"    pm.globals.set(\"Shopizer tokenValue\", res.json().token);\r",
+									"    \r",
+									"    console.log(res);\r",
+									"    \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e90a190-327c-4483-baaf-b727cf924e21",
+								"exec": [
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"",
+									"",
+									"",
+									"",
+									"    ",
+									"",
+									"",
+									"const collectionVariables = pm.collectionVariables.toObject();",
+									"for (let variableName in collectionVariables){",
+									"   // if (variableName.includes(('__export')){   // for particular variables",
+									"           pm.globals.set(variableName, collectionVariables[variableName]); //for all variables",
+									"           console.log(\"Collection Variables:\",collectionVariables[variableName]);",
+									"",
+									"}",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"userName\");",
+									"    //pm.expect(pm.response.totalprice).to.eql(200000);",
+									"});",
+									"",
+									"",
+									"",
+									" let shopizerValue = pm.response.json();",
+									"",
+									"pm.test(\"Checking Shopizer user UserName value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.userName).to.eql(\"corona1\");",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking Shopizer user firstName value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.firstName).to.eql(\"Beautiful\");",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking Shopizer user Credentials  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.groups[0].name).to.eql(\"ADMIN\");",
+									"}); ",
+									"",
+									"pm.test(\"Checking Shopizer user Permissions  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.permissions[8].name).to.eql(\"PAYMENT\");",
+									"});",
+									"",
+									"pm.test(\"Checking Shopizer user Mailid value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.emailAddress).to.eql(\"teamred\");",
+									"});",
+									"",
+									"",
+									"",
+									"var expect = require('chai').expect",
+									"  , firstName = 'Beautiful'",
+									"  , emailAddress = 'teamred@iths.se';",
+									"  ",
+									"    pm.test(\"Testing the different body response values\", function(){",
+									"",
+									"expect(firstName).to.be.a('string');",
+									"expect(firstName).to.equal('Beautiful');",
+									"expect(firstName).to.have.lengthOf(9);",
+									"expect(emailAddress).to.have.eql(\"teamred@iths.se\").with.lengthOf(15);",
+									"",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Testing different type variables\",function(){",
+									"pm.environment.get(\"{{url}}\");",
+									"pm.variables.get(\"key\");",
+									"pm.globals.get(\"Shopizer tokenValue\", jsonData.tokenValue);",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									"var user = {",
+									"  userFullName: function() {",
+									"    return this.firstName + \"  \" + this.lastName;",
+									"  }",
+									"}",
+									"  var userName1 = {",
+									"  firstName:\"Beautiful\",",
+									"  lastName: \"Life\"",
+									"}",
+									"var userName2 = {",
+									"  firstName:\"Hope\",",
+									"  lastName: \"will Win\"",
+									"}",
+									"pm.test(\"Full Name verification code\",function(){",
+									"    pm.expect(user.userFullName.call(userName1)).to.have.eql(\"Beautiful  Life\");",
+									"       pm.expect(user.userFullName.call(userName2)).to.have.eql(\"Hope  will Win\");",
+									"    ",
+									"});",
+									"console.log(\"user Name1:\",user.userFullName.call(userName1));",
+									"console.log(\"user Name2:\",user.userFullName.call(userName2));",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/private/users/54",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"private",
+								"users",
+								"54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletion user by id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ced869ff-1d4a-4558-9e82-cc0d2c77d270",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    //url: pm.environment.get(\"{{url}}\"),\r",
+									"    url:'http://localhost:8080/api/v1/private/login',\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        \r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \r",
+									"            \r",
+									"            \r",
+									"  \"password\": \"password\",\r",
+									"  \"username\": \"admin@shopizer.com\"\r",
+									"\r",
+									" })\r",
+									"    }\r",
+									"    \r",
+									"    \r",
+									"}, function (err, res) {\r",
+									"    \r",
+									"    pm.globals.set(\"Shopizer tokenValue\", res.json().token);\r",
+									"    \r",
+									"    console.log(res);\r",
+									"    \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "0496882c-a3a3-4f83-85d3-9970c663d114",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer{{token}}"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/private/user/98",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"private",
+								"user",
+								"98"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changepassword",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "93df6e82-59f1-4dfd-aba8-1ff5a2ba3fec",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    //url: pm.environment.get(\"{{url}}\"),\r",
+									"    url:'http://localhost:8080/api/v1/private/login',\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        \r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \r",
+									"            \r",
+									"            \r",
+									"  \"password\": \"password\",\r",
+									"  \"username\": \"admin@shopizer.com\"\r",
+									"\r",
+									" })\r",
+									"    }\r",
+									"    \r",
+									"    \r",
+									"}, function (err, res) {\r",
+									"    \r",
+									"    pm.globals.set(\"Shopizer tokenValue\", res.json().token);\r",
+									"    \r",
+									"    console.log(res);\r",
+									"    \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "13a916a3-24ee-4445-a618-34f9026a7d26",
+								"exec": [
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"",
+									"",
+									"",
+									"",
+									"    ",
+									"",
+									"",
+									"const collectionVariables = pm.collectionVariables.toObject();",
+									"for (let variableName in collectionVariables){",
+									"   // if (variableName.includes(('__export')){   // for particular variables",
+									"           pm.globals.set(variableName, collectionVariables[variableName]); //for all variables",
+									"           console.log(\"Collection Variables:\",collectionVariables[variableName]);",
+									"",
+									"}",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"message\");",
+									"    //pm.expect(pm.response.totalprice).to.eql(200000);",
+									"});",
+									"",
+									"",
+									"",
+									" let shopizerValue = pm.response.json();",
+									"",
+									"pm.test(\"Checking Shopizer user body response value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.message).to.eql(\"New password does not apply to format policy\");",
+									"}); ",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"var expect = require('chai').expect",
+									"  , firstName = 'Beautiful'",
+									"  , emailAddress = 'teamred@iths.se';",
+									"  ",
+									"    pm.test(\"Testing the different body response values\", function(){",
+									"",
+									"expect(firstName).to.be.a('string');",
+									"expect(firstName).to.equal('Beautiful');",
+									"expect(firstName).to.have.lengthOf(9);",
+									"expect(emailAddress).to.have.eql(\"teamred@iths.se\").with.lengthOf(15);",
+									"",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Testing different type variables\",function(){",
+									"pm.environment.get(\"{{url}}\");",
+									"pm.variables.get(\"key\");",
+									"pm.globals.get(\"Shopizer tokenValue\", jsonData.tokenValue);",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									"var user = {",
+									"  userFullName: function() {",
+									"    return this.firstName + \"  \" + this.lastName;",
+									"  }",
+									"}",
+									"  var userName1 = {",
+									"  firstName:\"Beautiful\",",
+									"  lastName: \"Life\"",
+									"}",
+									"var userName2 = {",
+									"  firstName:\"Hope\",",
+									"  lastName: \"will Win\"",
+									"}",
+									"pm.test(\"Full Name verification code\",function(){",
+									"    pm.expect(user.userFullName.call(userName1)).to.have.eql(\"Beautiful  Life\");",
+									"       pm.expect(user.userFullName.call(userName2)).to.have.eql(\"Hope  will Win\");",
+									"    ",
+									"});",
+									"console.log(\"user Name1:\",user.userFullName.call(userName1));",
+									"console.log(\"user Name2:\",user.userFullName.call(userName2));",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n  \"password\": \"Coronavirus-5\",\r\n  \"changePassword\": \"Coronavirus-6\"\r\n \r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/private/user/92/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"private",
+								"user",
+								"92",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get authentication user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c5cf3ae0-6af2-410b-a9ea-e0edf7e61abc",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    //url: pm.environment.get(\"{{url}}\"),\r",
+									"    url:'http://localhost:8080/api/v1/private/login',\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        \r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \r",
+									"            \r",
+									"            \r",
+									"  \"password\": \"password\",\r",
+									"  \"username\": \"admin@shopizer.com\"\r",
+									"\r",
+									" })\r",
+									"    }\r",
+									"    \r",
+									"    \r",
+									"}, function (err, res) {\r",
+									"    \r",
+									"    pm.globals.set(\"Shopizer tokenValue\", res.json().token);\r",
+									"    \r",
+									"    console.log(res);\r",
+									"    \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba5429e3-3157-4994-98e1-426acbbb14b4",
+								"exec": [
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"",
+									"",
+									"",
+									"",
+									"    ",
+									"",
+									"",
+									"const collectionVariables = pm.collectionVariables.toObject();",
+									"for (let variableName in collectionVariables){",
+									"   // if (variableName.includes(('__export')){   // for particular variables",
+									"           pm.globals.set(variableName, collectionVariables[variableName]); //for all variables",
+									"           console.log(\"Collection Variables:\",collectionVariables[variableName]);",
+									"",
+									"}",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"firstName\");",
+									"    //pm.expect(pm.response.totalprice).to.eql(200000);",
+									"});",
+									"",
+									"",
+									"",
+									" let shopizerValue = pm.response.json();",
+									"",
+									"pm.test(\"Checking Shopizer user UserName value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.userName).to.eql(\"admin@shopizer.com\");",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking Shopizer user firstName value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.firstName).to.eql(\"Administrator\");",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking Shopizer user Credentials  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.groups[0].name).to.eql(\"SUPERADMIN\");",
+									"}); ",
+									"",
+									"pm.test(\"Checking Shopizer user Permissions  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.permissions[8].name).to.eql(\"TAX\");",
+									"});",
+									"",
+									"pm.test(\"Checking Shopizer user Mailid value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.emailAddress).to.eql(\"admin@shopizer.com\");",
+									"});",
+									"",
+									"",
+									"",
+									"var expect = require('chai').expect",
+									"  , firstName = 'Beautiful'",
+									"  , emailAddress = 'teamred@iths.se';",
+									"  ",
+									"    pm.test(\"Testing the different body response values\", function(){",
+									"",
+									"expect(firstName).to.be.a('string');",
+									"expect(firstName).to.equal('Beautiful');",
+									"expect(firstName).to.have.lengthOf(9);",
+									"expect(emailAddress).to.have.eql(\"teamred@iths.se\").with.lengthOf(15);",
+									"",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Testing different type variables\",function(){",
+									"pm.environment.get(\"{{url}}\");",
+									"pm.variables.get(\"key\");",
+									"pm.globals.get(\"Shopizer tokenValue\", jsonData.tokenValue);",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									"var user = {",
+									"  userFullName: function() {",
+									"    return this.firstName + \"  \" + this.lastName;",
+									"  }",
+									"}",
+									"  var userName1 = {",
+									"  firstName:\"Beautiful\",",
+									"  lastName: \"Life\"",
+									"}",
+									"var userName2 = {",
+									"  firstName:\"Hope\",",
+									"  lastName: \"will Win\"",
+									"}",
+									"pm.test(\"Full Name verification code\",function(){",
+									"    pm.expect(user.userFullName.call(userName1)).to.have.eql(\"Beautiful  Life\");",
+									"       pm.expect(user.userFullName.call(userName2)).to.have.eql(\"Hope  will Win\");",
+									"    ",
+									"});",
+									"console.log(\"user Name1:\",user.userFullName.call(userName1));",
+									"console.log(\"user Name2:\",user.userFullName.call(userName2));",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzaG9waXplci5jb20iLCJhdWQiOiJhcGkiLCJleHAiOjE1ODg2MzA5NTQsImlhdCI6MTU4ODAyNjE1NH0.B8NqrJM3LA5wzM8uGUiDjBQmCRG4hnSkd8UfKco3aJCd_t7n-SSreU7J7PLPwTwbzyY1e6xYx0PyQs9_QuD83A"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/private/user/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"private",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checks if user already exists",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c6c816e9-5ddb-4eb8-a50a-464e7fcff359",
+								"exec": [
+									"pm.sendRequest({\r",
+									"    //url: pm.environment.get(\"{{url}}\"),\r",
+									"    url:'http://localhost:8080/api/v1/private/login',\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        \r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \r",
+									"            \r",
+									"            \r",
+									"  \"password\": \"password\",\r",
+									"  \"username\": \"admin@shopizer.com\"\r",
+									"\r",
+									" })\r",
+									"    }\r",
+									"    \r",
+									"    \r",
+									"}, function (err, res) {\r",
+									"    \r",
+									"    pm.globals.set(\"Shopizer tokenValue\", res.json().token);\r",
+									"    \r",
+									"    console.log(res);\r",
+									"    \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "531acbea-509e-44f5-a22a-e63e83c20292",
+								"exec": [
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"",
+									"",
+									"",
+									"",
+									"    ",
+									"",
+									"",
+									"const collectionVariables = pm.collectionVariables.toObject();",
+									"for (let variableName in collectionVariables){",
+									"   // if (variableName.includes(('__export')){   // for particular variables",
+									"           pm.globals.set(variableName, collectionVariables[variableName]); //for all variables",
+									"           console.log(\"Collection Variables:\",collectionVariables[variableName]);",
+									"",
+									"}",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"exists\");",
+									"    //pm.expect(pm.response.totalprice).to.eql(200000);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Body is correct\", function () {",
+									"    pm.response.to.have.body({",
+									"    \"exists\": true",
+									"});",
+									"});",
+									"",
+									"",
+									" let shopizerValue = pm.response.json();",
+									"",
+									"pm.test(\"Checking Shopizer user username already exist  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.exists).to.eql(true);",
+									"}); ",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"var expect = require('chai').expect",
+									"  , firstName = 'Beautiful'",
+									"  , emailAddress = 'teamred@iths.se';",
+									"  ",
+									"    pm.test(\"Testing the different body response values\", function(){",
+									"",
+									"expect(firstName).to.be.a('string');",
+									"expect(firstName).to.equal('Beautiful');",
+									"expect(firstName).to.have.lengthOf(9);",
+									"expect(emailAddress).to.have.eql(\"teamred@iths.se\").with.lengthOf(15);",
+									"",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Testing different type variables\",function(){",
+									"pm.environment.get(\"{{url}}\");",
+									"pm.variables.get(\"key\");",
+									"pm.globals.get(\"Shopizer tokenValue\", jsonData.tokenValue);",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									"var user = {",
+									"  userFullName: function() {",
+									"    return this.firstName + \"  \" + this.lastName;",
+									"  }",
+									"}",
+									"  var userName1 = {",
+									"  firstName:\"Beautiful\",",
+									"  lastName: \"Life\"",
+									"}",
+									"var userName2 = {",
+									"  firstName:\"Hope\",",
+									"  lastName: \"will Win\"",
+									"}",
+									"pm.test(\"Full Name verification code\",function(){",
+									"    pm.expect(user.userFullName.call(userName1)).to.have.eql(\"Beautiful  Life\");",
+									"       pm.expect(user.userFullName.call(userName2)).to.have.eql(\"Hope  will Win\");",
+									"    ",
+									"});",
+									"console.log(\"user Name1:\",user.userFullName.call(userName1));",
+									"console.log(\"user Name2:\",user.userFullName.call(userName2));",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzaG9waXplci5jb20iLCJhdWQiOiJhcGkiLCJleHAiOjE1ODg2MzA5NTQsImlhdCI6MTU4ODAyNjE1NH0.B8NqrJM3LA5wzM8uGUiDjBQmCRG4hnSkd8UfKco3aJCd_t7n-SSreU7J7PLPwTwbzyY1e6xYx0PyQs9_QuD83A"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"merchant\": \"DEFAULT\", \"unique\": \"tulasiiths5\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/private/user/unique",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"private",
+								"user",
+								"unique"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list of users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0d1f7ddd-6704-492f-8704-d1fab72b6ed6",
+								"exec": [
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"",
+									"",
+									"",
+									"",
+									"    ",
+									"",
+									"",
+									"const collectionVariables = pm.collectionVariables.toObject();",
+									"for (let variableName in collectionVariables){",
+									"   // if (variableName.includes(('__export')){   // for particular variables",
+									"           pm.globals.set(variableName, collectionVariables[variableName]); //for all variables",
+									"           console.log(\"Collection Variables:\",collectionVariables[variableName]);",
+									"",
+									"}",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"recordsTotal\");",
+									"    //pm.expect(pm.response.totalprice).to.eql(200000);",
+									"});",
+									"",
+									"",
+									"",
+									" let shopizerValue = pm.response.json();",
+									"",
+									"pm.test(\"Checking Shopizer user UserName value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.data[4].userName).to.eql(\"tulasiiths5\");",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking Shopizer user firstName value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.data[4].firstName).to.eql(\"Team\");",
+									"}); ",
+									"",
+									"",
+									"pm.test(\"Checking Shopizer user Credentials  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.data[0].permissions[1].name).to.eql(\"SUPERADMIN\");",
+									"}); ",
+									"",
+									"pm.test(\"Checking Shopizer user Permissions  \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.data[1].groups[11].name).to.eql(\"CUSTOMER\");",
+									"});",
+									"",
+									"pm.test(\"Checking Shopizer user Mailid value \", function () {",
+									"   ",
+									"    pm.expect(shopizerValue.data[5].emailAddress).to.eql(\"teamred@iths.se\");",
+									"});",
+									"",
+									"",
+									"",
+									"var expect = require('chai').expect",
+									"  , firstName = 'Beautiful'",
+									"  , emailAddress = 'teamred@iths.se';",
+									"  ",
+									"    pm.test(\"Testing the different body response values\", function(){",
+									"",
+									"expect(firstName).to.be.a('string');",
+									"expect(firstName).to.equal('Beautiful');",
+									"expect(firstName).to.have.lengthOf(9);",
+									"expect(emailAddress).to.have.eql(\"teamred@iths.se\").with.lengthOf(15);",
+									"",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Testing different type variables\",function(){",
+									"pm.environment.get(\"{{url}}\");",
+									"pm.variables.get(\"key\");",
+									"pm.globals.get(\"Shopizer tokenValue\", jsonData.tokenValue);",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									"var user = {",
+									"  userFullName: function() {",
+									"    return this.firstName + \"  \" + this.lastName;",
+									"  }",
+									"}",
+									"  var userName1 = {",
+									"  firstName:\"Beautiful\",",
+									"  lastName: \"Life\"",
+									"}",
+									"var userName2 = {",
+									"  firstName:\"Hope\",",
+									"  lastName: \"will Win\"",
+									"}",
+									"pm.test(\"Full Name verification code\",function(){",
+									"    pm.expect(user.userFullName.call(userName1)).to.have.eql(\"Beautiful  Life\");",
+									"       pm.expect(user.userFullName.call(userName2)).to.have.eql(\"Hope  will Win\");",
+									"    ",
+									"});",
+									"console.log(\"user Name1:\",user.userFullName.call(userName1));",
+									"console.log(\"user Name2:\",user.userFullName.call(userName2));",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzaG9waXplci5jb20iLCJhdWQiOiJhcGkiLCJleHAiOjE1ODg2MzA5NTQsImlhdCI6MTU4ODAyNjE1NH0.B8NqrJM3LA5wzM8uGUiDjBQmCRG4hnSkd8UfKco3aJCd_t7n-SSreU7J7PLPwTwbzyY1e6xYx0PyQs9_QuD83A"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/private/users?count=10&page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"private",
+								"users"
+							],
+							"query": [
+								{
+									"key": "count",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fb546bc2-6b78-402c-a09d-7916c04b6ec2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a7add89d-e926-4f0d-a67a-b78af4f86def",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"response code is oneof 200  || 201 || 403 || 404\", function () {",
+					"   pm.expect(pm.response.code).to.be.oneOf([200,201,403,404,400],\"its fail due to internal or global error\");",
+					"});",
+					"",
+					"pm.test(\"Response time is less than 200ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+					"});",
+					"",
+					"pm.test(\"Status code 200  name has string\", function () {",
+					"    ",
+					"     pm.expect(pm.response.status).to.be.oneOf([\"OK\",\"Created\",\"1\",\"Bad Request\"]);",
+					"   ",
+					"});",
+					"",
+					"pm.test(\"add the header value\",function(){",
+					"pm.request.headers.add({",
+					"    key: 'Content-Type',",
+					"    value: 'application/json'",
+					"});",
+					"});",
+					"pm.test(\"Content-Type is present if Status code is 200\", function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf([200,201,400]);",
+					"});",
+					"    //pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('text/xml; charset=utf-8');",
+					"    //pm.expect(pm.response.headers.get(\"Content-Type\")).to.include('application/json');",
+					" if (pm.response.code === [200||201]) {",
+					"\tvar jsonData = pm.response.json();",
+					"",
+					"\tpm.test(\"Content-Type is present\",function(){",
+					"\t   pm.expect(pm.response.headers.get(\"Content-Type\")).to.include('application/json');",
+					"\t",
+					"\t});",
+					"}",
+					"",
+					"var val = 1",
+					"  , addOne = function () { val += 1; }",
+					"  , getVal = function () { return val; };",
+					"pm.test(\"Increasing variable process\",function(){",
+					"pm.expect(addOne).to.increase(getVal).by(1);",
+					"});"
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

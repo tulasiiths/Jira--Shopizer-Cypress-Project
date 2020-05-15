@@ -1,0 +1,45 @@
+describe('Test of Shopizer', function () {
+    this.beforeAll('Open browser',function(){
+        cy.visit('http://localhost:8080/');
+    });
+/*it('As a user i would like to purchase a product without a login',function(){
+        cy.visit('http://localhost:8080/')
+        cy.get('a[data-hover="dropdown"]').contains('Products').click();
+        cy.get('a').contains("Handbags").click();
+        cy.get('.listing-product-name').contains('Vintage courier bag').click()
+        cy.get('button').contains('Add to cart').click()
+        cy.get('.hidden-xs').contains('Shopping cart').click()
+        cy.get('a').contains('Checkout').click();
+        cy.get('a').contains('Proceed to checkout').click()
+    
+ 
+})*/
+it('As a customer I would like to able to contact customer care so that I can register my complaint/feedback',()=>{
+    //cy.viewport(2500,3020)
+ 
+    //cy.scrollTo(0, 500)       
+    cy.get('a').contains('Contact us').click()
+    cy.get('input[title="Name is required"]').type('Team Red')
+    cy.get('input[id="email"]').type('teamred@iths.se')
+    cy.get('input[id="subject"]').type('Complaint for order no. 555')
+    cy.get('textarea[id="comment"]').type('Complaint regarding purchased item')
+    
+    cy.get('name="a-2jmbaxjy2b17"').contains("I'm not a robot")
+    cy.get('iframe')
+ 
+    //cy.get('div[.recaptcha-checkbox-border]').check()
+    
+ cy.get('input[type="button"]').click();
+    
+})
+})
+cy.title().should('eq','Vintage Bags - Shopizer demo')
+        cy.get('a[data-hover="dropdown"]').contains('Products').click();
+        cy.get('a').contains("Handbags").should('be.visible').click();
+        cy.get('.listing-product-name').contains('Vintage courier bag').should('be.visible').click()
+        cy.get('button').contains('Add to cart').should('be.visible').click()
+        cy.get('.hidden-xs').contains('Shopping cart').should('be.visible').click()
+        cy.get('a').contains('Checkout').should('be.visible').click();
+        cy.get('a').contains('Proceed to checkout').should('be.visible').click()
+
+ 
